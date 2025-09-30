@@ -46,7 +46,7 @@ Track your habits, view weekly progress charts, and see monthly completion stats
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 1. Clone this repo:
 
