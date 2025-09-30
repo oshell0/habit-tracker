@@ -1,0 +1,425 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+  --accent: #ffbed5;    /* your pink */
+  --accent2: #ffe6ef;   /* your pink */
+  --accent3: #101010;   /* mouse cursor colour */
+
+  --ring-bg: #eee;      /* background circle */
+  --ring-width: 4;        /* thickness */
+  --chart-line: var(--accent);
+  --chart-line-width: 1.6;
+  --table-header-bg: var(--accent2); /* or any color */
+  --table-header-fg: #111;
+}
+
+/* keep custom cursor everywhere */
+button,
+input,
+select,
+textarea,
+label {
+  cursor: inherit !important;  /* inherit the ✦ from body */
+}
+
+main {
+  max-width: 100%;              /* a bit wider page */
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.navbar {
+  position: sticky;  
+
+  display: flex;
+  flex-direction: column;   /* stack title on top, menu below */
+  align-items: center;       /* center both horizontally */
+  gap: 10px;
+  padding: 16px 0;
+
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  /*box-shadow: 0 1px 8px rgba(0,0,0,.05);*/
+}
+
+.title {
+  text-align: center;
+  font-size: 28px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 60;
+  color: #000000;
+}
+
+/* center menu links in a row */
+.menu {
+  display: flex;             /* container for the UL */
+  justify-content: center;
+  width: 100%;
+}
+
+/* make the <ul> horizontal + tidy */
+.menu ul {
+  display: flex;
+  gap: 100px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.menu a {
+  text-decoration: none;
+  color: #000000;
+  font-weight: 150;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+
+
+.menu a:hover { background: #f3f4f6; }
+
+/* custom cursor ------------------------------------------------- */
+
+html, body {
+  background: rgb(255, 255, 255);
+  cursor: url("assets/star-cursor.png") 8 8, auto;
+  font-family: Helvetica, sans-serif;
+}
+
+/* cursor trail ------------------------------------------------- */
+
+.dot {
+  position: fixed;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  opacity: 0.9;
+  animation: fade 0.3s ease-out forwards;
+}
+
+.dot::before {
+  content: "✦";                 /* sparkle/star Unicode character */
+  font-size: 20px;
+  color: var(--accent);               /* pink sparkle */
+  display: block;
+}
+
+@keyframes fade {
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+}
+
+/*------------------------------------------------------------*/
+/* toolbar puts reset on left, add form on right */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  
+}
+.toolbar-right { 
+  display: flex; 
+  gap: 8px; 
+  margin-left: auto; 
+}
+.toolbar-left  { 
+  display: flex; 
+}
+
+#newHabitName {
+  border: 1px solid #dadada;
+  border-radius: 12px;   /* ← round corners */
+  padding: 8px 12px;
+  background: #fff;
+  outline: none;
+}
+#newHabitName:focus {
+  /*border-color: #ffabc8;                 /* cute pink focus */
+  box-shadow: 0 0 0 3px #ffe8f0;         /* soft focus ring */
+}
+
+
+
+/* Base button */
+.btn {
+  appearance: none;
+  font: inherit;
+  font-size: 11px;
+  padding: 6px 7px;        /* smaller */
+  border-radius: 8px;
+  cursor: inherit;          /* keep your sparkle cursor (no pointer hand) */
+  border: 1px solid transparent;
+}
+
+/* variants just change colors/borders */
+.btn-primary {
+  background: var(--table-header-bg);
+  font: inherit;
+  font-size: 11px;
+  padding: 6px 7px;        /* smaller */
+  border-radius: 8px;
+  cursor: inherit;          /* keep your sparkle cursor (no pointer hand) */
+  border: 1px solid transparent;
+}
+
+.btn-secondary {
+  background: #fff;
+  color: #111;
+  border-color: #eee;
+}
+.btn-secondary:hover { background: #f3f4f6; }
+
+.btn-secondary:hover { 
+  background: #f3f4f6; 
+}
+
+/* sticky navbar needs top */
+.navbar { 
+  position: sticky; 
+  top: 0; 
+}
+.week-inline-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.week-inline-nav .range {
+  font-size: 14px;
+  font-weight: 400;   /* lighter */
+  color: #3f3f3f;
+  white-space: nowrap;
+}
+
+/* tiny square arrow buttons */
+.btn-icon {
+  padding: 4px 6px;
+  min-width: 20px;
+  text-align: center;
+}
+
+
+/* table --------------------------------------*/
+.card {
+  background:#fff;
+  border:1px solid #eee;
+  border-radius:12px;
+  padding:16px;
+  margin-top:20px;
+}
+
+table.habits {
+  width: 100%;               /* fill the (wider) main */
+  table-layout: fixed;       /* use colgroup widths */
+  border-collapse: collapse;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.col-habit   { width: 50%; }   /* roomy first column */
+.col-day     { width: 56px; }  /* tidy day cells */
+.col-actions { width: 96px; }  /* delete column */
+
+.habits th, .habits td {
+  padding: 10px;
+  border-bottom: 1px solid #ebebeb;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* habit title */
+.habits thead th { 
+  background:var(--table-header-bg); 
+  font-size: 17px;
+  font-weight:550; 
+  text-align:left; 
+}
+
+.habits tbody th[scope="row"] { 
+  text-align:left; 
+  font-weight:350; 
+  font-size:14px; 
+  color:#000000; 
+}
+
+.habits td label {
+  display: grid; 
+  place-items: centleer;
+  width: 100%; 
+  min-height: 36px; 
+  cursor: pointer;
+}
+/* remove the native look so hover doesn't white-flash */
+.habits input[type="checkbox"]{
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #bdbdbd;      /* visible pink border */
+  border-radius: 4px;
+  background: #fff;               /* stays white when unchecked */
+  display: grid;
+  place-content: center;
+}
+
+/* keep the fill pink when checked */
+.habits input[type="checkbox"]:checked{
+  background: var(--accent2);            /* solid pink, no hover change */
+  border-color: var(--accent2);          /* optional: a touch deeper when checked */
+}
+
+/* make the border more visible on hover (no background changes) */
+.habits input[type="checkbox"]:hover{
+  border-color: var(--accent2);          /* brighter pink border on hover */
+}
+
+/* simple ✓ mark (black) — minimal, nothing fancy */
+.habits input[type="checkbox"]::after{
+  content: "";
+  width: 5px;
+  height: 10px;
+  border: 2px solid #2a2a2a;
+  border-top: none;
+  border-left: none;
+  transform: scale(0) rotate(45deg);
+  transition: transform .1s linear;
+}
+.habits input[type="checkbox"]:checked::after{
+  transform: scale(1) rotate(45deg);
+}
+
+
+/*----------------------------------------*/
+/* Side-by-side layout for Stats page */
+.stats-grid {
+  display: grid;
+  gap: 32px;
+  position: relative; /* for divider */
+}
+
+
+@media (min-width: 900px) {
+  .stats-grid { grid-template-columns: 1.2fr 0.8fr; } /* chart wider than calendar */
+}
+.panel { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 10px; 
+}
+.panel-header { 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  gap: 10px; 
+}
+/* Base grid */
+.stats-grid {
+  display: grid;
+  gap: 24px;
+}
+
+/* Desktop: two columns + vertical splitter */
+@media (min-width: 900px) {
+  .stats-grid {
+    grid-template-columns: 1.2fr 1px 0.8fr; /* chart | line | calendar */
+    grid-template-rows: auto;
+    align-items: start;
+  }
+  .splitter {
+    width: 1px;
+    background: #e5e7eb;
+    height: 100%;
+  }
+  /* a little breathing room so buttons don’t hug the line */
+  .stats-grid > .panel:first-child { padding-right: 12px; }
+  .stats-grid > .panel:last-child  { padding-left: 12px; }
+}
+
+/* Mobile: stack panels + horizontal splitter between*/
+@media (max-width: 899px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1px auto; /* panel | line | panel */
+  }
+  .splitter {
+    height: 1px;
+    width: 100%;
+    background: #e5e7eb;
+    margin: 8px 0;           /* inset so it doesn’t touch edges */
+  }
+}
+
+
+
+#weekTitle {
+  font-size: 0.9rem;   /* smaller than normal */
+  font-weight: 500;    /* medium, not bold-bold */
+  color: #555;         /* softer grey */
+  margin-bottom: 0.5rem;
+}
+#monthTitle {
+  font-size: 1rem;   /* smaller than normal */
+  font-weight: 500;    /* medium, not bold-bold */
+  color: #555;         /* softer grey */
+  margin-bottom: 0.5rem;
+}
+.muted { 
+  color: #666; 
+  font-size: 
+  14px; }
+
+/* Calendar grid */
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(40px, 1fr));
+  gap: 8px;
+}
+.calendar .cell {
+  aspect-ratio: 1 / 1; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  position: relative;
+}
+.calendar .cell svg { width: 44px; height: 44px; }
+
+/* center the day number over the ring */
+.calendar .daynum {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  color: #555;
+  font-weight: 600;        /* a little bolder reads better */
+  pointer-events: none;    /* clicks go to the cell if you add any later */
+}
+
+
+
+/* base circle look */
+.calendar .ring {
+  fill: none;
+  stroke-linecap: round;
+  stroke-width: var(--ring-width);
+}
+
+/* background track */
+.calendar .ring-bg {
+  stroke: var(--ring-bg);
+}
+
+/* progress ring */
+.calendar .progress {
+  stroke: var(--accent);
+  transform: rotate(90deg) scaleX(-1);  /* counter clockwise */
+  transform-origin: 50% 50%;
+}

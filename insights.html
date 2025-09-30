@@ -1,0 +1,55 @@
+<!-- stats.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Habit Tracker • Stats</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <main class="stats-page">
+    
+    <div class="navbar">
+      <div class="title">Habit Tracker</div>
+      <nav class="menu">
+        <ul>
+          <li><a href="index.html">Habit Tracker</a></li>
+          <li><a href="insights.html" aria-current="page">Insights</a></li>
+          <li><a href="index.html#habits">Habits</a></li>
+        </ul>
+      </nav>
+    </div>
+    
+
+    <!-- This wrapper makes them side-by-side -->
+    <section class="card stats-grid">
+        <!-- Left panel: weekly chart -->
+        <div class="panel">
+            <div class="panel-header">
+            <button id="prevWeek" class="btn btn-secondary">◀ Prev Week</button>
+            <h2 id="weekTitle">This Week</h2>
+            <button id="nextWeek" class="btn btn-secondary">Next Week ▶</button>
+            </div>
+            <canvas id="weeklyChart" width="600" height="320"></canvas>
+            <p class="muted" id="weeklySummary"></p>
+        </div>
+
+        <!-- Divider lives BETWEEN the panels -->
+        <div class="splitter" aria-hidden="true"></div>
+
+        <!-- Right panel: monthly calendar -->
+        <div class="panel">
+            <div class="panel-header">
+            <button id="prevMonth" class="btn btn-secondary">◀ Prev</button>
+            <h2 id="monthTitle">Month</h2>
+            <button id="nextMonth" class="btn btn-secondary">Next ▶</button>
+            </div>
+            <div id="calendar" class="calendar"></div>
+        </div>  
+
+    </section>
+  </main>
+</body>
+</html>

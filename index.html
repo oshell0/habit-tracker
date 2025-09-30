@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habit Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <div class="navbar">
+            <div class="title">Habit Tracker</div>
+            <nav class="menu">
+                <ul>
+                    <li><a href="index.html">Habit Tracker</a></li>
+                    <li><a href="insights.html">Insights</a></li>
+                    <li><a href="index.html#habits">Habits</a></li>
+                </ul>
+            </nav>
+            </div>
+
+            <section class="card">
+            <div class="toolbar">
+                <div class="toolbar-left">
+                <button type="button" id="resetWeekBtn" class="btn btn-secondary">Reset This Week</button>
+                </div>
+
+                <div class="week-inline-nav">
+                    <button type="button" id="homePrevWeek" class="btn btn-secondary btn-icon">◀</button>
+                    <span id="homeWeekTitle" class="range">9/21/2025 – 9/27/2025</span>
+                    <button type="button" id="homeNextWeek" class="btn btn-secondary btn-icon">▶</button>
+                    <button type="button" id="homeToday" class="btn btn-secondary">Today</button>
+                </div>
+
+                <form id="addHabitForm" class="toolbar-right" autocomplete="off">
+                <input id="newHabitName" placeholder="New habit" required />
+                <button type="submit" class="btn btn-primary">Add</button>
+
+            </form>
+            </div>
+
+            <table class="habits">
+                <colgroup>
+                <col class="col-habit">
+                <col span="7" class="col-day">
+                <col class="col-actions">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>Habit</th>
+                    <th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody id="habitBody"></tbody>
+            </table>
+            </section>
+
+        </div>
+
+    </main>
+    
+</body>
+</html>
